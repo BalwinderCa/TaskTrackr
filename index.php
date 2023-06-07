@@ -5,11 +5,22 @@ require 'Task.php';
 $database = new Database();
 $task = new Task($database);
 
+$errors = []; // Initialize the errors array
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Add new task
     $title = $_POST['title'];
     $description = $_POST['description'];
-    $task->createTask($title, $description);
+
+    // Validate form inputs
+    if (empty($title)) {
+        $errors[] = 'Title is required';
+    }
+
+    // If there are no errors, proceed with creating the task
+    if (empty($errors)) {
+        $task->createTask($title, $description);
+    }
 }
 
 $tasks = $task->getAllTasks();
@@ -24,6 +35,13 @@ $tasks = $task->getAllTasks();
     <h1>Task Management System</h1>
     
     <h2>Add Task</h2>
+    <?php if (!empty($errors)) { ?>
+        <div class="errors">
+            <?php foreach ($errors as $error) { ?>
+                <p><?php echo htmlspecialchars($error); ?></p>
+            <?php } ?>
+        </div>
+    <?php } ?>
     <form method="POST">
         <label>Title:</label>
         <input type="text" name="title" required>

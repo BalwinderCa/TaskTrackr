@@ -30,30 +30,27 @@ $tasks = $task->getAllTasks();
 <html>
 <head>
     <title>Task Management System</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 </head>
 <body>
     <h1>Task Management System</h1>
     
     <h2>Add Task</h2>
-    <?php if (!empty($errors)) { ?>
-        <div class="errors">
-            <?php foreach ($errors as $error) { ?>
-                <p><?php echo htmlspecialchars($error); ?></p>
-            <?php } ?>
-        </div>
-    <?php } ?>
     <form method="POST">
-        <label>Title:</label>
-        <input type="text" name="title" required>
-        <br>
-        <label>Description:</label>
-        <textarea name="description"></textarea>
-        <br>
-        <button type="submit">Add Task</button>
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" name="description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Task</button>
     </form>
     
     <h2>Tasks</h2>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Title</th>
@@ -69,5 +66,9 @@ $tasks = $task->getAllTasks();
             <?php } ?>
         </tbody>
     </table>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+

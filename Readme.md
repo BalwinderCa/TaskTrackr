@@ -18,7 +18,7 @@ This is a simple PHP project that demonstrates a basic task management system us
 
 1. Clone the repository:
    ```shell
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/BalwinderCa/TaskTrackr.git
 
 2) Import the SQL file included in the project (database.sql) to create the necessary table in your MySQL database.
 

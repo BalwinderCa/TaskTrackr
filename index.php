@@ -32,40 +32,67 @@ $tasks = $task->getAllTasks();
     <title>Task Management System</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Custom styles (optional) */
+        .task-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Task Management System</h1>
-    
-    <h2>Add Task</h2>
-    <form method="POST">
-        <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title" name="title" required>
+    <div class="container">
+        <h1 class="text-center mt-4">Task Management System</h1>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Add Task</h2>
+                        <form method="POST">
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea class="form-control" id="description" name="description"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Task</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea class="form-control" id="description" name="description"></textarea>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-8">
+                <h2>Tasks</h2>
+                <?php if (count($tasks) > 0) { ?>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($tasks as $task) { ?>
+                                    <tr>
+                                        <td><?php echo $task['title']; ?></td>
+                                        <td><?php echo $task['description']; ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php } else { ?>
+                    <p>No tasks found.</p>
+                <?php } ?>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add Task</button>
-    </form>
-    
-    <h2>Tasks</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($tasks as $task) { ?>
-                <tr>
-                    <td><?php echo $task['title']; ?></td>
-                    <td><?php echo $task['description']; ?></td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
+    </div>
 
     <!-- Bootstrap JS (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>

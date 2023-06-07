@@ -13,6 +13,7 @@ This is a simple PHP project that demonstrates a basic task management system us
 
 - PHP
 - MySQL
+- Bootstrap 4
 
 ## Setup Instructions
 
